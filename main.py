@@ -27,7 +27,27 @@ selected_id = name_to_id[selected_name]
 st.divider()
 
 person = Person.load_by_id(selected_id)
-ekg_data = EKGdata.load_by_id(selected_id)
+
+tests = person.ekg_tests
+
+if len(tests) > 1:
+    selected_test = st.selectbox(
+        "EKG-Test auswählen",
+        tests,
+        format_func=lambda test: f"Test {test['id']} "
+    )
+else:
+    selected_test = tests[0]
+
+ekg_data = EKGdata(selected_test)
+
+st.write("**Testdatum:**", selected_test["date"])
+
+time_ms = ekg_data.df["Zeit in ms"]
+duration_ms = time_ms.iloc[-1] - time_ms.iloc[0]
+duration_min = duration_ms / 60000
+
+st.write("**Dauer der Zeitreihe:**", round(duration_min, 2), "Minuten")
 
 
 
@@ -36,7 +56,7 @@ left_col, right_col = st.columns([1, 2])
 
 with left_col:
     st.subheader(person.get_full_name())
-    st.write("**Alter:**", person.calc_age())
+    st.write("**Geburtsjahr:**", person.date_of_birth)
     st.write("**Maximale Herzfrequenz:**", person.calc_max_heart_rate())
     st.write("**Geschlecht:**", person.gender)
     
