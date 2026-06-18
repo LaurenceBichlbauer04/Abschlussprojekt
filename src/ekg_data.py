@@ -17,7 +17,7 @@ class EKGdata:
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
         self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',])
-       # self.df = self.df.iloc[:5000]  # Entferne die erste Zeile, da sie nur die Spaltennamen enthält
+        #self.df = self.df.iloc[:5000]  # Entferne die erste Zeile, da sie nur die Spaltennamen enthält
         self.peaks = 0
 
     def plot_time_series(self):
@@ -51,20 +51,24 @@ class EKGdata:
         return peaks
 
     def plot_time_series(self):
-        if self.peaks == 0:
-            self.find_peaks()
+        #if self.peaks == 0:
+            #self.find_peaks()
         
+        df_plot = self.df.head(5000)
+
         fig, ax = plt.subplots(figsize=(12, 5))
 
         ax.plot(
-            self.df["Zeit in ms"],
-            self.df["Messwerte in mV"],
+            df_plot["Zeit in ms"],
+            df_plot["Messwerte in mV"],
             label="EKG"
         )
 
+        peaks_in_plot = [p for p in self.peaks if p in df_plot.index]
+
         ax.scatter(
-            self.df.loc[self.peaks, "Zeit in ms"],
-            self.df.loc[self.peaks, "Messwerte in mV"],
+            self.df.loc[peaks_in_plot, "Zeit in ms"],
+            self.df.loc[peaks_in_plot, "Messwerte in mV"],
             color="red",
             label="Peaks"
         )
