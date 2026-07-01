@@ -16,49 +16,54 @@ class EKGdata:
         self.id = ekg_dict["id"]
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
-        self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',]).iloc[::2]
+        self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',]).iloc[::2].reset_index(drop=True)
         #self.df = self.df.iloc[:5000]  # Entferne die erste Zeile, da sie nur die Spaltennamen enthält
         self.peaks = 0
 
-   # def plot_time_series(self):
 
-        # Erstellte einen Line Plot, der ersten 2000 Werte mit der Zeit aus der x-Achse
-       # self.fig = px.line(self.df.head(2000), x="Zeit in ms", y="Messwerte in mV")
-        #return self.fig 
+    def find_peaks(self, threshold=0, respacing_factor=5):
 
-    def find_peaks(self, threshold = 0, respacing_factor = 5):
         series = self.df["Messwerte in mV"]
-        series = series.iloc[::respacing_factor]
-    
-        # Filter the series
-        #series = series[series>threshold]
-
 
         peaks = []
-        last = 0
-        current = 0
-        next = 0
+        last_peak = -respacing_factor
 
-        for index, row in series.items():
-            last = current
-            current = next
-            next = row
+        for i in range(1, len(series) - 1):
 
-            if last < current and current > next and current > threshold:
-                peaks.append(index)
-        
+            if (
+                series.iloc[i] >= series.iloc[i - 1]
+                and series.iloc[i] >= series.iloc[i + 1]
+                and series.iloc[i] > threshold
+            ):
+
+                if not peaks:
+                    peaks.append(series.index[i])
+                    last_peak = i
+
+                elif i - last_peak >= respacing_factor:
+                    peaks.append(series.index[i])
+                    last_peak = i
+
+                else:
+                    # Wenn der neue Peak höher ist als der letzte,
+                    # ersetze den letzten Peak
+                    if series.iloc[i] > self.df.loc[peaks[-1], "Messwerte in mV"]:
+                        peaks[-1] = series.index[i]
+                        last_peak = i
+
         self.peaks = peaks
         return peaks
     
     def calc_heart_rate(self, duration_min):
         return len(self.peaks) / duration_min
 
-    def plot_time_series(self, df_plot=None):
+    def plot_time_series(self, df_plot=None, peaks=None):
         
         if df_plot is None:
             df_plot = self.df
         
-        #df_plot = self.df.head(5000)
+        if peaks is None:
+            peaks = self.peaks
 
         fig, ax = plt.subplots(figsize=(12, 5))
 

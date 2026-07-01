@@ -90,7 +90,7 @@ def show():
     # -------------------------
     # DATEN FILTERUNG
     # -------------------------
-    df_plot = ekg_data.df.iloc[start_idx:end_idx].reset_index(drop=True)
+    df_plot = ekg_data.df.iloc[start_idx:end_idx]
 
     # -------------------------
     # PEAKS
@@ -128,4 +128,4 @@ def show():
     # -------------------------
     # PLOT
     # -------------------------
-    ekg_data.plot_time_series(df_plot)
+    ekg_data.plot_time_series(df_plot, peaks_in_range)
