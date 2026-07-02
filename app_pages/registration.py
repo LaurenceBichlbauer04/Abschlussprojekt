@@ -1,6 +1,6 @@
 import streamlit as st
 
 def show():
-    st.title("Schlafanalyse")
+    st.title("Registration")
 
     st.divider()
