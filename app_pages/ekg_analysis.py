@@ -44,6 +44,17 @@ def show():
 
     st.write("**Testdatum:**", selected_test["date"])
 
+    # Dauer der gesamten Messung berechnen
+    time_ms = ekg_data.df["Zeit in ms"]
+    duration_ms = time_ms.iloc[-1] - time_ms.iloc[0]
+    duration_min_total = duration_ms / 60000
+
+    st.write(
+        "**Dauer der Messung:**",
+        round(duration_min_total, 2),
+        "Minuten"
+    )
+
     # -------------------------
     # PERSON INFO
     # -------------------------
@@ -74,7 +85,7 @@ def show():
     )
 
     respacing_factor = st.slider(
-        "Abtast-Abstand",
+        "Peak-Mindestabstand",
         min_value=1,
         max_value=20,
         value=5

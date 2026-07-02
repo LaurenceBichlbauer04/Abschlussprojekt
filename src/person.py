@@ -4,6 +4,8 @@ from datetime import datetime
 
 class Person:
 
+    """Speichert alle Informationen und EKG-Tests einer Person."""
+
     def __init__(self, id, date_of_birth, firstname, lastname,picture_path, ekg_tests, gender="male"):
         self.id = id
         self.date_of_birth = date_of_birth
@@ -15,7 +17,6 @@ class Person:
 
 
 
-    @staticmethod
     def load_by_id(person_id):
 
         with open("data/person_db.json", "r", encoding="utf-8") as file:
@@ -43,6 +44,11 @@ class Person:
 
    
     def calc_max_heart_rate(self):
+
+        """
+        Berechnet die maximale theoretische Herzfrequenz
+        anhand von Alter und Geschlecht.
+        """
 
         age = self.calc_age()
 

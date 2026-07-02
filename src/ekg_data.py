@@ -1,15 +1,11 @@
 import json
 from matplotlib import pyplot as plt
 import pandas as pd
-import plotly.express as px
 import streamlit as st
-# %% Objekt-Welt
-
-# Klasse EKG-Data für Peakfinder, die uns ermöglicht peaks zu finden
 
 class EKGdata:
 
-## Konstruktor der Klasse soll die Daten einlesen
+    """Verwaltet das Einlesen, Analysieren und Darstellen von EKG-Messdaten."""
 
     def __init__(self, ekg_dict):
         #pass
@@ -17,11 +13,18 @@ class EKGdata:
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
         self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',]).iloc[::2].reset_index(drop=True)
-        #self.df = self.df.iloc[:5000]  # Entferne die erste Zeile, da sie nur die Spaltennamen enthält
-        self.peaks = 0
+        self.peaks = []
 
 
     def find_peaks(self, threshold=0, respacing_factor=5):
+
+        """
+        Erkennt lokale Maxima im EKG-Signal.
+
+        Es werden nur Peaks oberhalb des Schwellwertes erkannt.
+        Der Parameter respacing_factor legt den Mindestabstand
+        zwischen zwei erkannten Peaks fest.
+        """
 
         series = self.df["Messwerte in mV"]
 
@@ -91,6 +94,11 @@ class EKGdata:
     
     @classmethod
     def load_by_id(cls, ekg_id, path="data/person_db.json"):
+
+        """
+        Lädt anhand der EKG-ID den zugehörigen Datensatz aus der JSON-Datei.
+        """
+
         with open(path) as file:
             person_data = json.load(file)
 

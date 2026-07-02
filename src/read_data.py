@@ -3,6 +3,11 @@ import json
 
 
 def load_person_data(path="data/person_db.json"):
+
+    """
+    Liest alle Personendaten aus der JSON-Datei ein.
+    """
+
     with open(path, "r", encoding="utf-8") as file:
         return json.load(file)
 
@@ -17,6 +22,12 @@ def load_person_data(path="data/person_db.json"):
 
 
 def get_name_to_id(person_data):
+
+    """
+    Erstellt ein Dictionary, das den vollständigen Namen
+    einer Person ihrer ID zuordnet.
+    """
+
     name_to_id = {}
 
     for person in person_data:
