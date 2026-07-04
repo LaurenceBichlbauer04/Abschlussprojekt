@@ -2,7 +2,7 @@ import streamlit as st
 from src.person import Person
 from src.ekg_data import EKGdata
 from src.read_data import load_person_data, get_name_to_id
-from app_pages import overview, sleep_analysis, account, ekg_analysis
+from app_pages import overview, sleep_analysis, account, ekg_analysis, login
 
 st.markdown("""
 <style>
@@ -36,6 +36,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    login.show()
+    st.stop()
 
 
 st.sidebar.image("data/pictures/icon.png")
