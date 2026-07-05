@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "username": "julian",
+    "username": "admin",
     "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
     "date_of_birth": 1989,
     "firstname": "Julian",
