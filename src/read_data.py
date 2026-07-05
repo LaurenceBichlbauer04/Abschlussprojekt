@@ -1,7 +1,5 @@
 import json
 
-
-
 def load_person_data(path="data/person_db.json"):
 
     """
@@ -46,23 +44,26 @@ def find_person_data_by_name(suchstring):
     else:
         return {}
     
-def add_person(firstname, lastname, birth_year, gender, picture_path = "data/pictures/Muster.jpg"):
+def add_person(username, hash_pwd, birth_year ,firstname, lastname, gender, picture_path = "data/pictures/Muster.jpg"):
     """
     Fügt eine neue Person zur person_db.json hinzu.
     """
 
     person_data = load_person_data()
 
-    new_id = max(person["id"] for person in person_data) + 1
+    new_id = max((person["id"] for person in person_data), default=0) + 1
 
     new_person = {
         "id": new_id,
+        "username" : username,
+        "hash_pwd" : hash_pwd,
         "firstname": firstname,
         "lastname": lastname,
         "date_of_birth": birth_year,
         "gender": gender,
         "picture_path": picture_path,
-        "ekg_tests": []
+        "ekg_tests": [],
+        "smartwatch_data": [],
     }
 
     person_data.append(new_person)
@@ -104,7 +105,7 @@ def add_ekg_test(person_id, test_date, result_link):
 def delete_person(person_id):
     """
     Löscht eine Person anhand ihrer ID aus der Datenbank.
-    
+
     """
 
     person_data = load_person_data()
