@@ -91,17 +91,23 @@ def show():
         value=5
     )
 
-    start_idx, end_idx = st.slider(
-        "Zeitbereich auswählen (Index)",
-        min_value=0,
-        max_value=len(ekg_data.df) - 1,
-        value=(0, min(5000, len(ekg_data.df) - 1))
+    time_s = ekg_data.df["Zeit in ms"] / 1000
+
+    start_sec, end_sec = st.slider(
+        "Zeitbereich auswählen (Sekunden)",
+        min_value=float(time_s.iloc[0]),
+        max_value=float(time_s.iloc[-1]),
+        value=(float(time_s.iloc[0]), min(10.0, float(time_s.iloc[-1]))),
+        step=0.5
     )
 
     # -------------------------
     # DATEN FILTERUNG
     # -------------------------
-    df_plot = ekg_data.df.iloc[start_idx:end_idx]
+    df_plot = ekg_data.df[
+        (time_s >= start_sec) &
+        (time_s <= end_sec)
+    ]
 
     # -------------------------
     # PEAKS
@@ -113,7 +119,7 @@ def show():
 
     peaks_in_range = [
         p for p in all_peaks
-        if p >= start_idx and p < end_idx
+        if start_sec <= ekg_data.df.loc[p, "Zeit in ms"] / 1000 <= end_sec
     ]
 
     # -------------------------

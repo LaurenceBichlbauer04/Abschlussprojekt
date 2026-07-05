@@ -71,7 +71,7 @@ class EKGdata:
         fig, ax = plt.subplots(figsize=(12, 5))
 
         ax.plot(
-            df_plot["Zeit in ms"],
+            df_plot["Zeit in ms"] / 1000,
             df_plot["Messwerte in mV"],
             label="EKG"
         )
@@ -79,13 +79,13 @@ class EKGdata:
         peaks_in_plot = [p for p in self.peaks if p in df_plot.index]
 
         ax.scatter(
-            df_plot.loc[peaks_in_plot, "Zeit in ms"],
+            df_plot.loc[peaks_in_plot, "Zeit in ms"] / 1000,
             df_plot.loc[peaks_in_plot, "Messwerte in mV"],
-            color="red",
+            color="purple",
             label="Peaks"
         )
 
-        ax.set_xlabel("Zeit [ms]")
+        ax.set_xlabel("Zeit [s]")
         ax.set_ylabel("Spannung [mV]")
         ax.set_title("EKG mit Peaks")
         ax.legend()

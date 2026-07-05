@@ -64,7 +64,10 @@ class Person:
 
    
     def get_image(self):
-        return Image.open(self.picture_path)
+        try:
+            return Image.open(self.picture_path)
+        except FileNotFoundError:
+            return None
     
 
     
