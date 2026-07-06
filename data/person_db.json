@@ -1,11 +1,20 @@
 [
     {
         "id": 1,
+        "username": "admin",
+        "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
         "date_of_birth": 1989,
         "firstname": "Julian",
         "lastname": "Huber",
         "picture_path": "data/pictures/tb.jpg",
         "gender": "male",
+        "smartwatch_data": [
+            {
+                "id": 1,
+                "date": "2026-07-01",
+                "result_link": "data/smartwatch_data/01_sleep.csv"
+            }
+        ],
         "intervall_tests": {
             "id": 1,
             "date": "10.2.2023",
@@ -26,11 +35,14 @@
     },
     {
         "id": 2,
+        "username": "yannic",
+        "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
         "date_of_birth": 1967,
         "firstname": "Yannic",
         "lastname": "Heyer",
         "picture_path": "data/pictures/js.jpg",
         "gender": "male",
+        "smartwatch_data": [],
         "ekg_tests": [
             {
                 "id": 3,
@@ -41,11 +53,14 @@
     },
     {
         "id": 3,
+        "username": "yunus",
+        "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
         "date_of_birth": 1973,
         "firstname": "Yunus",
         "lastname": "Schmirander",
         "gender": "male",
         "picture_path": "data/pictures/bl.jpg",
+        "smartwatch_data": [],
         "ekg_tests": [
             {
                 "id": 4,
@@ -56,11 +71,26 @@
     },
     {
         "id": 4,
+        "username": "max",
+        "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
         "firstname": "Max",
         "lastname": "Mustermann",
         "date_of_birth": 2000,
         "gender": "male",
         "picture_path": "data/pictures/Muster.jpg",
+        "smartwatch_data": [],
         "ekg_tests": []
+    },
+    {
+        "id": 5,
+        "username": "lauri123",
+        "hash_pwd": "$2b$12$geeDDcZ3SaVdUsBWBvdOyuk2HG9djR88YndldRlXqLEsFWqTT4JxC",
+        "firstname": "laurence",
+        "lastname": "bichlbauer",
+        "date_of_birth": 2004,
+        "gender": "Mann",
+        "picture_path": "data/pictures/Muster.jpg",
+        "ekg_tests": [],
+        "smartwatch_data": []
     }
 ]
