@@ -85,17 +85,5 @@
         "picture_path": "data/pictures/Muster.jpg",
         "smartwatch_data": [],
         "ekg_tests": []
-    },
-    {
-        "id": 5,
-        "username": "lauri123",
-        "hash_pwd": "$2b$12$geeDDcZ3SaVdUsBWBvdOyuk2HG9djR88YndldRlXqLEsFWqTT4JxC",
-        "firstname": "laurence",
-        "lastname": "bichlbauer",
-        "date_of_birth": 2004,
-        "gender": "male",
-        "picture_path": "data/pictures/Muster.jpg",
-        "ekg_tests": [],
-        "smartwatch_data": []
     }
 ]
