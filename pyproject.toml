@@ -13,3 +13,10 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.poetry]
+name = "abschlussprojekt"
+version = "0.1.0"
+description = ""
+authors = ["Laurence und Jan"]
+package-mode = false
