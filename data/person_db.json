@@ -12,7 +12,7 @@
             {
                 "id": 1,
                 "date": "2026-07-01",
-                "result_link": "data/smartwatch_data/01_sleep.csv"
+                "result_link": "data/smartwatch_data/sleep_001.csv"
             }
         ],
         "intervall_tests": {
@@ -92,5 +92,59 @@
         "picture_path": "data/pictures/Muster.jpg",
         "ekg_tests": [],
         "smartwatch_data": []
+    },
+    {
+        "id": 6,
+        "username": "asdf",
+        "hash_pwd": "$2b$12$NW34dQmJCg0gkwL8dIV5feA1s5XAucqOi/qZ31LUHiDNVIz2mLNve",
+        "firstname": "sabine",
+        "lastname": "Aschauer",
+        "date_of_birth": 2002,
+        "gender": "Mann",
+        "picture_path": "data/pictures/Muster.jpg",
+        "ekg_tests": [],
+        "smartwatch_data": [
+            {
+                "id": 1,
+                "date": "07.07.2026",
+                "result_link": "data/smartwatch_data\\20260707_125248_sleep_002.csv"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "username": "ap",
+        "hash_pwd": "$2b$12$klAQqf/7HpK/wLqzdknSWem6dL7MCDpTXTAPWD6s/jGYxqm8y5/2m",
+        "firstname": "test apne",
+        "lastname": "apnoe",
+        "date_of_birth": 1938,
+        "gender": "Mann",
+        "picture_path": "data/pictures/Muster.jpg",
+        "ekg_tests": [],
+        "smartwatch_data": [
+            {
+                "id": 1,
+                "date": "07.07.2026",
+                "result_link": "data/smartwatch_data\\20260707_152403_sleep_002_all_phases_apnea.csv"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "username": "asd",
+        "hash_pwd": "$2b$12$oS1G2CIeDj6WGdkKl.Yst.n9RADs4Ikxjd5y3P/97.lfhYNEcPLCi",
+        "firstname": "Laur",
+        "lastname": "asdff",
+        "date_of_birth": 2000,
+        "gender": "Mann",
+        "picture_path": "data/pictures/Muster.jpg",
+        "ekg_tests": [],
+        "smartwatch_data": [
+            {
+                "id": 1,
+                "date": "15.07.2026",
+                "result_link": "data/smartwatch_data\\20260707_170838_sleep_002_all_phases_apnea.csv"
+            }
+        ]
     }
 ]

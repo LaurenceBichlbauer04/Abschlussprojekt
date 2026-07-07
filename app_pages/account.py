@@ -11,8 +11,6 @@ def show():
         layout="wide"
     )
 
-
-    
     st.title("Benutzer")
 
     st.divider()
@@ -61,7 +59,7 @@ def show():
         gender = st.selectbox(
             "Geschlecht",
             ["male", "female"],
-            index=0 if person.gender == "male" else 1
+            index = 0 if person.gender == "male" else 1
         )
 
         picture_file = st.file_uploader(
