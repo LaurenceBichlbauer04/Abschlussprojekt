@@ -39,17 +39,18 @@ def show():
         col1 = st.columns(2)
 
         with col1[0]:
-            if st.button("Registrieren", use_container_width=True): 
+            if st.button("Registrieren", width="stretch"): 
                 error = check_person(firstname, lastname, username, password1, password2)
                 if  error == None:
                     hash_pwd = hash_password(password1)
                     add_person(username, hash_pwd, date_of_birth, firstname, lastname, gender)
+                    user = Person.load_by_username(username)
                     st.session_state.logged_in = True
-                    st.session_state.username = username
+                    st.session_state.user = user
                     st.rerun()
 
         with col1[1]:
-            if st.button("zum Login zurück", use_container_width=True):
+            if st.button("zum Login zurück", width="stretch"):
                 st.session_state.page = "login"
                 st.rerun()
         if error != None:

@@ -1,7 +1,7 @@
 import streamlit as st
 from src.person import Person
 from src.ekg_data import EKGdata
-from src.read_data import load_person_data, get_name_to_id
+from src.person import Person
 from app_pages import sleep_analysis, account, ekg_analysis, login
 
 st.markdown("""
@@ -98,7 +98,7 @@ if not st.session_state.logged_in:
     st.stop()
 
 
-st.sidebar.image("data/pictures/icon.png", use_container_width= True)
+st.sidebar.image("data/pictures/icon.png", width= "stretch")
 st.sidebar.title("Schlafanalyse")
 
 page = st.sidebar.radio(
@@ -131,7 +131,9 @@ elif page == "👤 Benutzer":
 
 
 #st.sidebar.markdown("<div class='logout-space'></div>", unsafe_allow_html=True)
-
-if st.sidebar.button("Logout",use_container_width= True):
+st.sidebar.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
+person = st.session_state.user
+st.sidebar.write("Eingeloggt : " + person.get_full_name())
+if st.sidebar.button("Logout", width="stretch"):
     st.session_state.logged_in = False
     st.rerun()

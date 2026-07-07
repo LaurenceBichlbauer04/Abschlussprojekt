@@ -11,8 +11,6 @@ def show():
         layout="wide"
     )
 
-
-    
     st.title("Benutzer")
 
     st.divider()
@@ -73,12 +71,12 @@ def show():
         gender = st.selectbox(
             "Geschlecht",
             ["male", "female"],
-            index=0 if person.gender == "male" else 1
+            index = 0 if person.gender == "male" else 1
         )
 
         picture_path = st.text_input(
             "Bildpfad",
-            value=person.picture_path
+            value = person.picture_path
         )
 
         submitted = st.form_submit_button("Änderungen speichern")
