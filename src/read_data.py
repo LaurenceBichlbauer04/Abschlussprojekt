@@ -44,7 +44,7 @@ def find_person_data_by_name(suchstring):
     else:
         return {}
     
-def add_person(username, hash_pwd, birth_year ,firstname, lastname, gender, picture_path = "data/pictures/Muster.jpg"):
+def add_person(username, hash_pwd, birth_year ,firstname, lastname, gender, picture_path):
     """
     Fügt eine neue Person zur person_db.json hinzu.
     """

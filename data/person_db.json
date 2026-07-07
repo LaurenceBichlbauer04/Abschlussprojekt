@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "username": "admin",
+        "username": "julian",
         "hash_pwd": "$2b$12$udnwWw2JjP4iei76aYySi.h298i7n80Stnf61/vaNnq/3LRN/OWFW",
         "date_of_birth": 1989,
         "firstname": "Julian",
         "lastname": "Huber",
-        "picture_path": "data/pictures/tb.jpg",
+        "picture_path": "data\\pictures\\tb.jpg",
         "gender": "male",
         "smartwatch_data": [
             {
@@ -59,7 +59,7 @@
         "firstname": "Yunus",
         "lastname": "Schmirander",
         "gender": "male",
-        "picture_path": "data/pictures/bl.jpg",
+        "picture_path": "data\\pictures\\bl.jpg",
         "smartwatch_data": [],
         "ekg_tests": [
             {

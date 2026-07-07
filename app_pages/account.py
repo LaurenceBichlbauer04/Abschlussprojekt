@@ -64,12 +64,27 @@ def show():
             index=0 if person.gender == "male" else 1
         )
 
-        picture_path = st.text_input(
-            "Bildpfad",
-            value=person.picture_path
+        picture_file = st.file_uploader(
+            "Neues Profilbild auswählen",
+            type=["jpg", "jpeg", "png"]
         )
 
         submitted = st.form_submit_button("Änderungen speichern")
+
+        # Standardmäßig das bisherige Bild behalten
+        picture_path = person.picture_path
+
+        # Falls ein neues Bild hochgeladen wurde
+        if picture_file is not None:
+
+            picture_path = os.path.join(
+                "data",
+                "pictures",
+                picture_file.name
+            )
+
+            with open(picture_path, "wb") as file:
+                file.write(picture_file.getbuffer())
 
         if submitted:
             update_person(
@@ -92,6 +107,7 @@ def show():
     if confirm:
         if st.button("🗑️ Person endgültig löschen"):
             delete_person(selected_id)
+            st.session_state.logged_in = False
             st.success("Person wurde gelöscht.")
             st.rerun()
 
@@ -103,18 +119,28 @@ def show():
 
         test_date = st.date_input("Testdatum")
 
-        result_link = st.text_input(
-            "Pfad zur EKG-Datei"
+        ekg_file = st.file_uploader(
+            "EKG-Datei auswählen",
+            type=["txt"]
         )
 
         submitted = st.form_submit_button("EKG-Test hinzufügen")
 
         if submitted:
 
-            if not os.path.exists(result_link):
-                st.error("EKG-Datei wurde nicht gefunden.")
+            if ekg_file is None:
+                st.error("Bitte eine EKG-Datei auswählen.")
 
             else:
+
+                result_link = os.path.join(
+                    "data",
+                    "ekg_data",
+                    ekg_file.name
+                )
+
+                with open(result_link, "wb") as file:
+                    file.write(ekg_file.getbuffer())
 
                 add_ekg_test(
                     selected_id,
@@ -122,4 +148,4 @@ def show():
                     result_link
                 )
 
-            st.success("EKG-Test erfolgreich hinzugefügt.")
+                st.success("EKG-Test erfolgreich hinzugefügt.")
