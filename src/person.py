@@ -97,6 +97,38 @@ class Person:
             return None
     
 
+    def add_smartwatch_data(self, date, file_path):
+
+        new_id = max(
+            (entry["id"] for entry in self.smartwatch_data),
+            default=0
+        ) + 1
+
+        new_entry = {
+            "id": new_id,
+            "date": date,
+            "result_link": file_path
+        }
+
+        # Dem Objekt hinzufügen
+        self.smartwatch_data.append(new_entry)
+
+        # JSON laden
+        json_path = "data/person_db.json"
+
+        with open(json_path, "r", encoding="utf-8") as f:
+            persons = json.load(f)
+
+        # Richtige Person aktualisieren
+        for p in persons:
+            if p["id"] == self.id:
+                p["smartwatch_data"] = self.smartwatch_data
+                break
+
+        # JSON speichern
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(persons, f, indent=4, ensure_ascii=False)
+
     
 if __name__ == "__main__":
 

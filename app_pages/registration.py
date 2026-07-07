@@ -44,8 +44,9 @@ def show():
                 if  error == None:
                     hash_pwd = hash_password(password1)
                     add_person(username, hash_pwd, date_of_birth, firstname, lastname, gender)
+                    user = Person.load_by_username(username)
                     st.session_state.logged_in = True
-                    st.session_state.username = username
+                    st.session_state.user = user
                     st.rerun()
 
         with col1[1]:

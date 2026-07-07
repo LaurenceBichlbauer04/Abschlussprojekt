@@ -11,13 +11,8 @@
         "smartwatch_data": [
             {
                 "id": 1,
-                "date": "01.07.2026",
-                "result_link": "data/smartwatch_data/sleep_001.csv"
-            },
-            {
-                "id": 2,
-                "date": "02.07.2026",
-                "result_link": "data/smartwatch_data/sleep_002.csv"
+                "date": "2026-07-01",
+                "result_link": "data/smartwatch_data/01_sleep.csv"
             }
         ],
         "intervall_tests": {
@@ -85,5 +80,17 @@
         "picture_path": "data/pictures/Muster.jpg",
         "smartwatch_data": [],
         "ekg_tests": []
+    },
+    {
+        "id": 5,
+        "username": "lauri123",
+        "hash_pwd": "$2b$12$geeDDcZ3SaVdUsBWBvdOyuk2HG9djR88YndldRlXqLEsFWqTT4JxC",
+        "firstname": "laurence",
+        "lastname": "bichlbauer",
+        "date_of_birth": 2004,
+        "gender": "Mann",
+        "picture_path": "data/pictures/Muster.jpg",
+        "ekg_tests": [],
+        "smartwatch_data": []
     }
 ]

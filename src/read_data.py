@@ -1,4 +1,6 @@
 import json
+import os
+from datetime import datetime
 
 def load_person_data(path="data/person_db.json"):
 
@@ -138,6 +140,23 @@ def update_person(person_id, firstname, lastname, birth_year, gender, picture_pa
     with open("data/person_db.json", "w", encoding="utf-8") as file:
         json.dump(person_data, file, indent=4)
 
+def save_uploaded_smartwatch_file(uploaded_file):
+    folder = "data/smartwatch_data"
+    os.makedirs(folder, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{timestamp}_{uploaded_file.name}"
+
+    file_path = os.path.join(folder, filename)
+
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    return file_path
+
+
+
+
+
 
 if __name__ == "__main__":
     list = load_person_data()
@@ -147,3 +166,5 @@ if __name__ == "__main__":
     print(list)
     #print(person_list)
     print(nameid)
+
+    print(save_uploaded_smartwatch_file("hallo"))
