@@ -91,7 +91,94 @@ class EKGdata:
         ax.legend()
 
         st.pyplot(fig)
-    
+
+    def plot_hrv(self, df_plot=None):
+
+        if df_plot is None:
+            df_plot = self.df
+
+        # Nur Peaks verwenden, die im ausgewählten Bereich liegen
+        peaks_in_plot = [p for p in self.peaks if p in df_plot.index]
+
+        if len(peaks_in_plot) < 2:
+            st.warning("Zu wenige Peaks im ausgewählten Bereich.")
+            return
+
+        peak_times = df_plot.loc[peaks_in_plot, "Zeit in ms"].values
+
+        rr_intervals = []
+        time_axis = []
+
+        for i in range(1, len(peak_times)):
+            rr_intervals.append(peak_times[i] - peak_times[i - 1])
+            time_axis.append(peak_times[i] / 1000)
+
+        fig, ax = plt.subplots(figsize=(12, 4))
+
+        ax.plot(
+            time_axis,
+            rr_intervals,    
+            marker="o",
+            markerfacecolor="purple",
+            markeredgecolor="purple"
+        )
+
+        ax.set_title("Herzratenvariabilität")
+        ax.set_xlabel("Zeit [s]")
+        ax.set_ylabel("RR-Intervall [ms]")
+        ax.grid(True)
+
+        st.pyplot(fig)
+
+    def plot_heart_rate(self, df_plot=None, window=5):
+
+        if df_plot is None:
+            df_plot = self.df
+
+        peaks_in_plot = [p for p in self.peaks if p in df_plot.index]
+
+        if len(peaks_in_plot) < 2:
+            st.warning("Zu wenige Peaks im ausgewählten Bereich.")
+            return
+
+        peak_times = df_plot.loc[peaks_in_plot, "Zeit in ms"].values
+
+        heart_rates = []
+        time_axis = []
+
+        for i in range(1, len(peak_times)):
+
+            rr = peak_times[i] - peak_times[i-1]
+
+            bpm = 60000 / rr
+
+            heart_rates.append(bpm)
+
+            time_axis.append(peak_times[i] / 1000)
+
+        # gleitender Durchschnitt
+        hr_smooth = (
+            pd.Series(heart_rates)
+            .rolling(window=window, center=True)
+            .mean()
+        )
+
+        fig, ax = plt.subplots(figsize=(12,4))
+
+        ax.plot(
+            time_axis,
+            hr_smooth,
+            color="purple",
+            linewidth=2
+        )
+
+        ax.set_title("Herzrate")
+        ax.set_xlabel("Zeit [s]")
+        ax.set_ylabel("Herzfrequenz [BPM]")
+        ax.grid(True)
+
+        st.pyplot(fig)
+
     @classmethod
     def load_by_id(cls, ekg_id, path="data/person_db.json"):
 
