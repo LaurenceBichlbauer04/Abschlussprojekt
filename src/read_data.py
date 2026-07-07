@@ -141,6 +141,11 @@ def update_person(person_id, firstname, lastname, birth_year, gender, picture_pa
         json.dump(person_data, file, indent=4)
 
 def save_uploaded_smartwatch_file(uploaded_file):
+    """
+    Uploaded neue Smartwatch Files mit den Namen + einen Zeitstempel
+
+    """
+     
     folder = "data/smartwatch_data"
     os.makedirs(folder, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
