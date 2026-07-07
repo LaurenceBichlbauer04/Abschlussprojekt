@@ -139,3 +139,11 @@ def show():
     # PLOT
     # -------------------------
     ekg_data.plot_time_series(df_plot, peaks_in_range)
+
+    st.subheader("Herzratenvariabilität")
+
+    ekg_data.plot_hrv(df_plot)
+
+    st.subheader("Herzrate")
+
+    ekg_data.plot_heart_rate(df_plot)
