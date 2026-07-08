@@ -74,14 +74,14 @@ def show():
                         )
                         user = Person.load_by_username(username)
                         st.session_state.logged_in = True
-                        st.session_state.username = username
+                        st.session_state.user = user
                         st.session_state.user_id = user.id
                         st.rerun()
-                    add_person(username, hash_pwd, date_of_birth, firstname, lastname, gender)
-                    user = Person.load_by_username(username)
-                    st.session_state.logged_in = True
-                    st.session_state.user = user
-                    st.rerun()
+                    # add_person(username, hash_pwd, date_of_birth, firstname, lastname, gender)
+                    # user = Person.load_by_username(username)
+                    # st.session_state.logged_in = True
+                    # st.session_state.user = user
+                    # st.rerun()
 
         with col1[1]:
             if st.button("zum Login zurück", width="stretch"):

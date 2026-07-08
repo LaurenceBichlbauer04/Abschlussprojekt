@@ -41,7 +41,6 @@ def show():
                 # if username == "admin" and password == "1234":
                 elif check_password(password, user.hash_pwd):
                     st.session_state.logged_in = True
-                    st.session_state.username = username
                     st.session_state.user_id = user.id
                     st.session_state.user = user
                     st.rerun()
@@ -54,3 +53,5 @@ def show():
         
         if error != None:
             st.error(error)
+
+
