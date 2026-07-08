@@ -1,8 +1,7 @@
 import streamlit as st
 import os
 from src.person import Person
-from src.ekg_data import EKGdata
-from src.read_data import load_person_data, get_name_to_id, add_person, add_ekg_test, delete_person, update_person
+from src.read_data import  add_ekg_test, delete_person, update_person
 
 def show():
     st.set_page_config(

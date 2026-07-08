@@ -3,20 +3,13 @@ import plotly.graph_objects as go
 
 
 class sleep_data:
-    """
-    Klasse zur Verarbeitung und Analyse von Schlafdaten.
 
-    Die Klasse lädt Smartwatch-Daten aus einer CSV-Datei, filtert Messwerte,
-    berechnet Schlafphasen, erstellt einen Schlafscore und erzeugt Plotly-Diagramme.
-    """
+    """Verwaltet Smartwatch-Schlafdaten und stellt Funktionen zur Analyse und Visualisierung bereit."""
 
     def __init__(self, result_link):
-        """
-        Erstellt ein sleep_data-Objekt.
 
-        Parameters:
-            result_link (str): Pfad zur CSV-Datei mit den Schlafdaten.
-        """
+        """Initialisiert das Objekt mit dem Pfad zur Smartwatch-Datei."""
+
         self.result_link = result_link
         self.data = None
 
@@ -31,15 +24,12 @@ class sleep_data:
         return self.data
 
     def filter_data(self):
-        """
-        Glättet wichtige Messwerte mit einem gleitenden Fenster.
 
-        Dadurch werden starke Ausreißer reduziert und die Werte eignen sich besser
-        für Diagramme und die spätere Schlafphasen-Erkennung.
-
-        Returns:
-            pd.DataFrame: DataFrame mit zusätzlichen gefilterten Spalten.
         """
+        Glättet die Messwerte mithilfe gleitender Mittelwerte bzw. Mediane,
+        um Ausreißer zu reduzieren und die Daten für die Analyse vorzubereiten.
+        """
+
         if self.data is None:
             self.load_data()
 
@@ -79,23 +69,134 @@ class sleep_data:
         ).mean()
 
         return self.data
+    
+    
+    def plot_heart_rate(self):
+        fig = go.Figure()
+
+        fig.add_trace(
+            go.Scatter(
+                x=self.data.index,
+                y=self.data["heart_rate_filtered"],   
+                mode="lines",
+                name="Herzfrequenz",
+                line=dict(color="red", width=2)
+            )
+        )
+
+        fig.update_layout(
+        title=dict(
+            text="❤️ Herzfrequenz <span style='font-size:14px; color:#A8B3C7'>(bpm)</span>",
+            x=0.02,
+            y=0.95,
+            xanchor="left",
+            yanchor="top",
+            font=dict(size=16, color="#E6EDF3"),
+        ),
+
+        paper_bgcolor="#0f172a",
+        plot_bgcolor="#0f172a",
+
+        font=dict(color="#E6EDF3"),
+
+        height=220,
+        margin=dict(l=40, r=25, t=45, b=35),
+
+        xaxis=dict(
+            title=None,
+            showgrid=False,
+            zeroline=False,
+            showline=False,
+            tickfont=dict(color="#A8B3C7"),
+        ),
+
+        yaxis=dict(
+            title=None,
+            showgrid=True,
+            gridcolor="rgba(255,255,255,0.08)",
+            zeroline=False,
+            showline=False,
+            tickfont=dict(color="#A8B3C7"),
+        ),
+
+        hovermode="x unified",
+        showlegend=False,
+        )
+
+        fig.update_yaxes(range=[40, 100], dtick=25)
+
+        return fig
+
+    def plot_spo2_rate(self):
+        fig = go.Figure()
+
+        fig.add_trace(
+            go.Scatter(
+                x=self.data.index,
+                y=self.data["spo2_filtered"],   
+                mode="lines",
+                name="Sauerstoffsättigung",
+                line=dict(color="#4cc9f0", width=2)
+            )
+        )
+
+        fig.update_layout(
+        title=dict(
+            text="💧 SpO₂ <span style='font-size:14px; color:#A8B3C7'>(%)</span>",
+            x=0.02,
+            y=0.95,
+            xanchor="left",
+            yanchor="top",
+            font=dict(size=16, color="#E6EDF3"),
+        ),
+
+        paper_bgcolor="#0f172a",
+        plot_bgcolor="#0f172a",
+
+        font=dict(color="#E6EDF3"),
+
+        height=220,
+        margin=dict(l=40, r=25, t=45, b=35),
+
+        xaxis=dict(
+            title=None,
+            showgrid=False,
+            zeroline=False,
+            showline=False,
+            tickfont=dict(color="#A8B3C7"),
+        ),
+
+        yaxis=dict(
+            title=None,
+            showgrid=True,
+            gridcolor="rgba(255,255,255,0.08)",
+            zeroline=False,
+            showline=False,
+            tickfont=dict(color="#A8B3C7"),
+        ),
+
+        hovermode="x unified",
+        showlegend=False,
+        )
+
+        fig.update_yaxes(range=[80, 100], dtick=5)
+
+        return fig
+    
 
     def calculate_sleep_phases(self):
-        """
-        Berechnet einfache Schlafphasen anhand der gefilterten Messwerte.
 
-        Die Schlafphasen werden regelbasiert aus Herzfrequenz, HRV,
-        Bewegung und Atemfrequenz abgeleitet.
-
-        Returns:
-            pd.DataFrame: DataFrame mit zusätzlicher Spalte 'sleep_phase'.
         """
-        if self.data is None or "heart_rate_filtered" not in self.data.columns:
+        Berechnet einen Schlafscore auf Basis von Schlafdauer,
+        Schlafphasen, Sauerstoffsättigung und Bewegung und erkennt
+        mögliche Hinweise auf Schlafapnoe.
+        """
+
+        if self.data["heart_rate_filtered"] is None:
             self.filter_data()
 
         df = self.data.copy()
 
-        # Dynamische Grenzwerte passend zu den jeweiligen Daten berechnen
         hr_low = df["heart_rate_filtered"].quantile(0.30)
         hr_high = df["heart_rate_filtered"].quantile(0.70)
 
@@ -133,11 +234,14 @@ class sleep_data:
         return df
 
     def calculate_sleep_score(self):
-        """
-        Berechnet einen einfachen Schlafscore und wichtige Kennzahlen.
 
-        Bewertet werden unter anderem Schlafdauer, Tiefschlafanteil,
-        REM-Anteil, Wachphasen, Bewegung und SpO2-Werte.
+        """
+        Berechnet einen Schlafscore auf Basis von Schlafdauer,
+        Schlafphasen, Sauerstoffsättigung und Bewegung und erkennt
+        mögliche Hinweise auf Schlafapnoe.
+        """
+
+        df = self.data.copy()
 
         Returns:
             dict: Schlafscore, Schlafdauer, Durchschnittswerte und Warnhinweise.

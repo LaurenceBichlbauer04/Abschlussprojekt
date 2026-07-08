@@ -2,16 +2,10 @@ import streamlit as st
 from src.sleep_data import sleep_data
 from src.read_data import save_uploaded_smartwatch_file
 
-
 def metric_card(title, value, icon=""):
-    """
-    Erstellt eine kleine Kennzahlen-Karte für das Dashboard.
 
-    Parameters:
-        title (str): Überschrift der Karte.
-        value (str): Angezeigter Wert.
-        icon (str): Optionales Icon vor dem Titel.
-    """
+    """Zeigt eine formatierte Kennzahlenkarte mit Titel, Wert und optionalem Symbol an."""
+
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">{icon} {title}</div>

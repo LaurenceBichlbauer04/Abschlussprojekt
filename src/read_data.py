@@ -47,9 +47,8 @@ def find_person_data_by_name(suchstring):
         return {}
     
 def add_person(username, hash_pwd, birth_year ,firstname, lastname, gender, picture_path):
-    """
-    Fügt eine neue Person zur person_db.json hinzu.
-    """
+    
+    """Fügt eine neue Person mit ihren Stammdaten zur Datenbank hinzu."""
 
     person_data = load_person_data()
 
@@ -76,9 +75,9 @@ def add_person(username, hash_pwd, birth_year ,firstname, lastname, gender, pict
     return new_id
 
 def add_ekg_test(person_id, test_date, result_link):
-    """
-    Fügt einer vorhandenen Person einen neuen EKG-Test hinzu.
-    """
+   
+    """Fügt einer bestehenden Person einen neuen EKG-Test hinzu."""
+    
 
     person_data = load_person_data()
 
@@ -105,10 +104,8 @@ def add_ekg_test(person_id, test_date, result_link):
         json.dump(person_data, file, indent=4)
 
 def delete_person(person_id):
-    """
-    Löscht eine Person anhand ihrer ID aus der Datenbank.
-
-    """
+    
+    """Entfernt eine Person aus der Datenbank."""
 
     person_data = load_person_data()
 
@@ -141,11 +138,9 @@ def update_person(person_id, firstname, lastname, birth_year, gender, picture_pa
         json.dump(person_data, file, indent=4)
 
 def save_uploaded_smartwatch_file(uploaded_file):
-    """
-    Uploaded neue Smartwatch Files mit den Namen + einen Zeitstempel
 
-    """
-     
+    """Speicherung der Smartwatch-daten"""
+
     folder = "data/smartwatch_data"
     os.makedirs(folder, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

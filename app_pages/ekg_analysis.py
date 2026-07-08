@@ -1,7 +1,7 @@
 import streamlit as st
 from src.person import Person
 from src.ekg_data import EKGdata
-from src.read_data import load_person_data, get_name_to_id
+
 
 def show():
     st.set_page_config(
@@ -23,6 +23,11 @@ def show():
     # TESTAUSWAHL
     # -------------------------
     tests = person.ekg_tests
+
+    # Prüfen, ob überhaupt EKG-Tests vorhanden sind
+    if len(tests) == 0:
+        st.info("📄 Für diesen Benutzer sind noch keine EKG-Daten vorhanden.")
+        st.stop()
 
     if len(tests) > 1:
         selected_test = st.selectbox(

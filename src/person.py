@@ -22,6 +22,8 @@ class Person:
     @staticmethod
     def load_by_id(person_id):
 
+        """Lädt eine Person anhand ihrer ID."""
+
         with open("data/person_db.json", "r", encoding="utf-8") as file:
             persons = json.load(file)
 
@@ -44,6 +46,8 @@ class Person:
 
     @staticmethod
     def load_by_username(username):
+
+        """Sucht einen Benutzer anhand seines Benutzernamens."""
 
         with open("data/person_db.json", "r", encoding="utf-8") as file:
             persons = json.load(file)
@@ -98,6 +102,8 @@ class Person:
     
 
     def add_smartwatch_data(self, date, file_path):
+
+        "Fügt Messdaten einer Smartwatch hinzu"
 
         new_id = max(
             (entry["id"] for entry in self.smartwatch_data),

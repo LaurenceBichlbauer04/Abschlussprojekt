@@ -104,104 +104,15 @@
         "smartwatch_data": []
     },
     {
-        "id": 6,
-        "username": "asdf",
-        "hash_pwd": "$2b$12$NW34dQmJCg0gkwL8dIV5feA1s5XAucqOi/qZ31LUHiDNVIz2mLNve",
-        "firstname": "sabine",
-        "lastname": "Aschauer",
-        "date_of_birth": 2002,
-        "gender": "Mann",
-        "picture_path": "data/pictures/Muster.jpg",
-        "ekg_tests": [],
-        "smartwatch_data": [
-            {
-                "id": 1,
-                "date": "07.07.2026",
-                "result_link": "data/smartwatch_data\\20260707_125248_sleep_002.csv"
-            }
-        ]
-    },
-    {
-        "id": 7,
-        "username": "ap",
-        "hash_pwd": "$2b$12$klAQqf/7HpK/wLqzdknSWem6dL7MCDpTXTAPWD6s/jGYxqm8y5/2m",
-        "firstname": "test apne",
-        "lastname": "apnoe",
-        "date_of_birth": 1938,
-        "gender": "Mann",
-        "picture_path": "data/pictures/Muster.jpg",
-        "ekg_tests": [],
-        "smartwatch_data": [
-            {
-                "id": 1,
-                "date": "07.07.2026",
-                "result_link": "data/smartwatch_data\\20260707_152403_sleep_002_all_phases_apnea.csv"
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "username": "asd",
-        "hash_pwd": "$2b$12$oS1G2CIeDj6WGdkKl.Yst.n9RADs4Ikxjd5y3P/97.lfhYNEcPLCi",
-        "firstname": "Laur",
-        "lastname": "asdff",
-        "date_of_birth": 2000,
-        "gender": "Mann",
-        "picture_path": "data/pictures/Muster.jpg",
-        "ekg_tests": [],
-        "smartwatch_data": [
-            {
-                "id": 1,
-                "date": "15.07.2026",
-                "result_link": "data/smartwatch_data\\20260707_170838_sleep_002_all_phases_apnea.csv"
-            }
-        ]
-    },
-    {
         "id": 9,
-        "username": "lauri",
-        "hash_pwd": "$2b$12$CYxr8mjGmqHj6hYCWZmne.bN09ZfYevX56nzvQj4rnMvA5sbGVQmK",
-        "firstname": "laurence",
-        "lastname": "bichlbauer",
-        "date_of_birth": 2004,
+        "username": "jan",
+        "hash_pwd": "$2b$12$NZhA.Bir/8MlfNq2vkgsdO036vVxpGAFOYLzlXke2wYtTtIbHjosq",
+        "firstname": "Jan",
+        "lastname": "Arnsteiner",
+        "date_of_birth": 2005,
         "gender": "Mann",
-        "picture_path": "data\\pictures\\ChatGPT Image 28. Juni 2026, 00_39_52.png",
+        "picture_path": "data\\pictures\\aj9310_0.jpg",
         "ekg_tests": [],
         "smartwatch_data": []
-    },
-    {
-        "id": 10,
-        "username": "asdfg",
-        "hash_pwd": "$2b$12$tC7tcYsJ/docqmauTLY1JO42cVTuLj.4h61Mhv9fqxaibxMQs2ACS",
-        "firstname": "asfdasas",
-        "lastname": "asdf",
-        "date_of_birth": 2000,
-        "gender": "Mann",
-        "picture_path": "data\\pictures\\ChatGPT Image 28. Juni 2026, 00_09_30.png",
-        "ekg_tests": [],
-        "smartwatch_data": []
-    },
-    {
-        "id": 11,
-        "username": "1234",
-        "hash_pwd": "$2b$12$eZ4Mzhn0bCGzcji4P4La2O7HttJVkMjj5AwFIbpzpE9i96eeIHz6C",
-        "firstname": "1234",
-        "lastname": "1234",
-        "date_of_birth": 2000,
-        "gender": "Mann",
-        "picture_path": "data\\pictures\\ChatGPT Image 28. Juni 2026, 00_09_30.png",
-        "ekg_tests": [],
-        "smartwatch_data": [
-            {
-                "id": 1,
-                "date": "07.07.2026",
-                "result_link": "data/smartwatch_data\\20260707_172740_sleep_002_all_phases_apnea.csv"
-            },
-            {
-                "id": 2,
-                "date": "09.07.2026",
-                "result_link": "data/smartwatch_data\\20260707_174216_sleep_002_all_phases_apnea.csv"
-            }
-        ]
     }
 ]

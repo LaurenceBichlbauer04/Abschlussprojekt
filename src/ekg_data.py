@@ -5,10 +5,12 @@ import streamlit as st
 
 class EKGdata:
 
-    """Verwaltet das Einlesen, Analysieren und Darstellen von EKG-Messdaten."""
+    """Verwaltet EKG-Messdaten und stellt Funktionen zur Analyse und Visualisierung bereit."""
 
     def __init__(self, ekg_dict):
-        #pass
+
+        """Initialisiert ein EKG-Objekt aus den Daten eines EKG-Tests."""
+
         self.id = ekg_dict["id"]
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
@@ -19,11 +21,10 @@ class EKGdata:
     def find_peaks(self, threshold=0, respacing_factor=5):
 
         """
-        Erkennt lokale Maxima im EKG-Signal.
+        Erkennt lokale Maxima im EKG oberhalb eines Schwellwertes.
 
-        Es werden nur Peaks oberhalb des Schwellwertes erkannt.
-        Der Parameter respacing_factor legt den Mindestabstand
-        zwischen zwei erkannten Peaks fest.
+        Der Parameter respacing_factor bestimmt den minimalen Abstand
+        zwischen zwei erkannten Peaks.
         """
 
         series = self.df["Messwerte in mV"]
@@ -61,6 +62,8 @@ class EKGdata:
         return len(self.peaks) / duration_min
 
     def plot_time_series(self, df_plot=None, peaks=None):
+
+        """Zeigt den ausgewählten EKG-Zeitbereich mit markierten Peaks an."""
         
         if df_plot is None:
             df_plot = self.df
@@ -93,6 +96,8 @@ class EKGdata:
         st.pyplot(fig)
 
     def plot_hrv(self, df_plot=None):
+
+        """Stellt die Herzratenvariabilität anhand der RR-Intervalle grafisch dar."""
 
         if df_plot is None:
             df_plot = self.df
@@ -131,6 +136,10 @@ class EKGdata:
         st.pyplot(fig)
 
     def plot_heart_rate(self, df_plot=None, window=5):
+
+        """
+    Zeigt die Herzfrequenz als gleitenden Durchschnitt über die Zeit.
+        """
 
         if df_plot is None:
             df_plot = self.df
@@ -182,9 +191,9 @@ class EKGdata:
     @classmethod
     def load_by_id(cls, ekg_id, path="data/person_db.json"):
 
-        """
-        Lädt anhand der EKG-ID den zugehörigen Datensatz aus der JSON-Datei.
-        """
+        
+        """Lädt ein EKG anhand seiner ID aus der Datenbank."""
+        
 
         with open(path) as file:
             person_data = json.load(file)
