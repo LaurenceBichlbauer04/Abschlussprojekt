@@ -13,7 +13,7 @@ Benutzer können sich registrieren und anmelden. Jeder Benutzer verwaltet aussch
 ### Benutzerverwaltung
 
 - Registrierung neuer Benutzer
-- Login mit verschlüsselten Passwörtern (bcrypt)
+- Login mit verschlüsselten Passwörtern 
 - Persönliches Benutzerprofil
 - Bearbeiten der eigenen Daten
 - Löschen des eigenen Kontos
