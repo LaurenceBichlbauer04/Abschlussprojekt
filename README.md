@@ -60,7 +60,7 @@ Zusätzlich werden berechnet:
 ```
 Abschlussprojekt/
 │
-├── app.py
+├── main.py
 ├── app_pages/
 ├── src/
 ├── data/
